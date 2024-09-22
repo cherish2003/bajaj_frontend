@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function App() {
   const [jsonInput, setJsonInput] = useState(
@@ -30,7 +31,7 @@ function App() {
       try {
         const parsedInput = JSON.parse(jsonInput);
         const requestBody = { ...parsedInput, file_b64: fileData };
-        const res = await fetch("http://localhost:5000/bfhl", {
+        const res = await fetch(apiUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(requestBody),
